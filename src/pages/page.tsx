@@ -5,9 +5,7 @@ import HotdogList from '../components/HotdogList';
 import Header from '../components/Header';
 import Login from '../components/Login';
 import Register from '../components/Register';
-import styles from '../styles/Home.module.css';
 import '../styles/styles.css';
-import Image from 'next/image';
 
 interface Hotdog {
   date: string;
@@ -38,8 +36,7 @@ const Page = () => {
     }
   }, [hotdogs, user]);
 
-  const addHotdog = (count: number) => {
-    const date = new Date().toISOString().split('T')[0];
+  const addHotdog = (date: string, count: number) => {
     setHotdogs([...hotdogs, { date, count }]);
   };
 
@@ -54,37 +51,42 @@ const Page = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <p className="font-display text-2xl font-semibold">DogTracker3000</p>
+          <p className="mt-1 text-sm text-[#8a6a45]">Loading…</p>
+        </div>
       </div>
     );
   }
 
   if (!user) {
-    return (
-      <>
-        {isLoginMode ? (
-          <Login onToggleMode={toggleAuthMode} />
-        ) : (
-          <Register onToggleMode={toggleAuthMode} />
-        )}
-      </>
+    return isLoginMode ? (
+      <Login onToggleMode={toggleAuthMode} />
+    ) : (
+      <Register onToggleMode={toggleAuthMode} />
     );
   }
 
   return (
-    <>
+    <div className="min-h-screen">
       <Header />
-      <div className={styles.container}>
-        <div className="flex justify-center items-center mt-4">
-          <Image src="/hotdog.png" alt="Hotdog" width={200} height={100} />
-        </div>
-        <div className="max-w-4xl mx-auto p-6">
-          <HotdogForm addHotdog={addHotdog} />
-          <HotdogList hotdogs={hotdogs} removeHotdog={removeHotdog} />
-        </div>
-      </div>
-    </>
+      <main className="mx-auto max-w-5xl px-5 py-8">
+        <section className="mb-6 rounded-[28px] bg-[#1c1410] p-6 text-[#fff6ea] shadow-xl shadow-[#1c1410]/10 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5b942]">
+            Hey, {user.username}
+          </p>
+          <h2 className="mt-2 font-display text-4xl font-semibold leading-tight sm:text-5xl">
+            How many dogs today?
+          </h2>
+          <p className="mt-3 max-w-md text-[#f3d7b5]">
+            Log each serving. DogTracker3000 keeps the running tally.
+          </p>
+        </section>
+        <HotdogForm addHotdog={addHotdog} />
+        <HotdogList hotdogs={hotdogs} removeHotdog={removeHotdog} />
+      </main>
+    </div>
   );
 };
 

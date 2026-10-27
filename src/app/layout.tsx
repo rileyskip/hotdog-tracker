@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hotdog Tracker",
-  description: "Track your hotdog consumption with user accounts",
+  title: "DogTracker3000",
+  description: "DogTracker3000 keeps a running tally of every hot dog you eat.",
 };
 
 export default function RootLayout({

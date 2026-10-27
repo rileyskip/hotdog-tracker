@@ -14,14 +14,13 @@ const App = () => {
     localStorage.setItem("hotdogs", JSON.stringify(hotdogs));
   }, [hotdogs]);
 
-  const addHotdog = (count) => {
-    const date = new Date().toISOString().split("T")[0];
+  const addHotdog = (date, count) => {
     setHotdogs([...hotdogs, { date, count: parseInt(count, 10) }]);
   };
 
   return (
     <div>
-      <h1>Hotdog Tracker</h1>
+      <h1>DogTracker3000</h1>
       <HotdogForm addHotdog={addHotdog} />
       <HotdogList hotdogs={hotdogs} />
     </div>
