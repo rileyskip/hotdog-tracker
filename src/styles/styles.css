@@ -7,8 +7,6 @@ body {
   min-height: 100vh;
   color: #1c1410;
   background:
-    radial-gradient(circle at 0% 0%, rgba(245, 185, 66, 0.38), transparent 42%),
-    radial-gradient(circle at 100% 100%, rgba(226, 61, 40, 0.16), transparent 38%),
-    #fff4e6;
+    linear-gradient(to top in oklch, "orange-50", "orange-200");
   font-family: var(--font-body), "Nunito", "Segoe UI", sans-serif;
 }

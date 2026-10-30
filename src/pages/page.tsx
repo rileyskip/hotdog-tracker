@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import HotdogForm from '../components/HotdogForm';
-import HotdogList from '../components/HotdogList';
-import Header from '../components/Header';
-import Login from '../components/Login';
-import Register from '../components/Register';
-import '../styles/styles.css';
+import { useState, useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import HotdogForm from "../components/HotdogForm";
+import HotdogList from "../components/HotdogList";
+import Header from "../components/Header";
+import Login from "../components/Login";
+import Register from "../components/Register";
+import "../styles/styles.css";
 
 interface Hotdog {
   date: string;
@@ -21,7 +21,9 @@ const Page = () => {
   useEffect(() => {
     if (user) {
       const userHotdogKey = `hotdogs_${user.id}`;
-      const storedHotdogs = JSON.parse(localStorage.getItem(userHotdogKey) || '[]');
+      const storedHotdogs = JSON.parse(
+        localStorage.getItem(userHotdogKey) || "[]",
+      );
       setHotdogs(storedHotdogs);
     } else {
       setHotdogs([]);
@@ -80,7 +82,7 @@ const Page = () => {
             How many dogs today?
           </h2>
           <p className="mt-3 max-w-md text-[#f3d7b5]">
-            Log each serving. DogTracker3000 keeps the running tally.
+            Log each hotdog. DogTracker3000 keeps the running tally.
           </p>
         </section>
         <HotdogForm addHotdog={addHotdog} />
